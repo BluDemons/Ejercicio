@@ -20,6 +20,7 @@ import { ResumenFacturacionComponent } from './facturacion/resumen-facturacion/r
 import { NichoComponent } from './materiales/nicho/nicho.component';
 import { PdfComponent } from './pdf/pdf.component';
 import { FiltrosPipe } from './filtros.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FiltrosPipe } from './filtros.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
