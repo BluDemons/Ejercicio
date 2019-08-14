@@ -19,6 +19,7 @@ import { ResumenAlbaranComponent } from './albaran/resumen-albaran/resumen-albar
 import { ResumenFacturacionComponent } from './facturacion/resumen-facturacion/resumen-facturacion.component';
 import { NichoComponent } from './materiales/nicho/nicho.component';
 import { PdfComponent } from './pdf/pdf.component';
+import { FiltrosPipe } from './filtros.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PdfComponent } from './pdf/pdf.component';
     ResumenAlbaranComponent,
     ResumenFacturacionComponent,
     NichoComponent,
-    PdfComponent
+    PdfComponent,
+    FiltrosPipe
   ],
   imports: [
     BrowserModule,

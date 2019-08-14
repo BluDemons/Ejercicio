@@ -21,6 +21,17 @@
 <!-- TABLA MATERIALES -->
 <section>
     <div class="table-wrapper">
+        <div class="materi">
+            <form mathod="get">
+                <h2>Buscar</h2>
+                <input type="text" name="buscar" [(ngModel)]="filtroMateriales">
+                <select name="buscar" id="buscar" [(ngModel)]="filtroMateriales">
+                  <option *ngFor="let item of respuestaMateriales" value={{item.nombre}}>{{item.nombre}}</option>
+                </select>
+                <!-- <select name="buscar" [(ngModel)]="filtroMateriles"></select> -->
+                <!-- <input type="submit" value="Buscar" (click)="filtroMateriales"> -->
+            </form>
+        </div>
         <h1>MATERIALES</h1>
         <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" border="0">
@@ -37,7 +48,7 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let item of respuestaMateriales">
+                    <tr *ngFor="let item of respuestaMateriales | filtros:filtroMateriales">
                         <th>{{item.id}}</th>
                         <th>{{item.nombre}}</th>
                         <th>{{item.descripcion}}</th>

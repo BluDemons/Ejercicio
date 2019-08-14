@@ -3,7 +3,7 @@ import jsPDF from 'jspdf';
 import { HttpClient } from  '@angular/common/http';
 import { environment } from '../../environments/environment';
 import 'jspdf-autotable';
-  
+
 
 @Component({
   selector: 'pdf',
@@ -24,14 +24,14 @@ export class PdfComponent implements OnInit {
   textSize: number;
   interlineado: number;
   anchoUso: number;
-  altoUso: number;  
-  textoArray: string[];     
+  altoUso: number;
+  textoArray: string[];
   idFacturaVariable: any
   cliente: any;
   material: any;
   precioMaterial
   cantidad: any;
-  tabla: autoTable;
+  // tabla: autoTable;
 
   constructor(private http:HttpClient) { }
 
@@ -50,7 +50,7 @@ export class PdfComponent implements OnInit {
   }
 
   traerDatos = () =>{
-    let idCliente 
+    let idCliente
     let idMaterial
     this.http.get<any>(environment.API_URL + `?tabla=factura`)
     .subscribe(data => {
@@ -80,7 +80,7 @@ export class PdfComponent implements OnInit {
     // Emcabezado
     //let imgMarca = new Image();
    // imgMarca.src = '../../../../assets/img/miniBack.jpg'
-    
+
     let logo = new Image();
     logo.src = urlLogo;
     //doc.addImage(logo,15,10,40,20)
@@ -125,7 +125,7 @@ export class PdfComponent implements OnInit {
     this.altoParrafo = Math.ceil(dim.h)+(this.textSize * 0.3515) * this.interlineado
     doc.text(mail,xCenter,this.y)
     this.y += this.altoParrafo
-    
+
   }
 
   factura = () => {
@@ -153,27 +153,27 @@ export class PdfComponent implements OnInit {
     this.docPDF.setFontType('bold')
     this.docPDF.text('Nombre:',this.x,this.y)
     this.x += 25;
-    this.docPDF.setFontType('normal'); 
+    this.docPDF.setFontType('normal');
     this.docPDF.text(`${this.cliente.nombre} ${this.cliente.apellido}`,this.x,this.y);
     this.x += 40;
     this.docPDF.setFontType('bold')
     this.docPDF.text('Cedula:',this.x,this.y)
     this.x += 20;
-    this.docPDF.setFontType('normal'); 
+    this.docPDF.setFontType('normal');
     this.docPDF.text(`${this.cliente.identificacion}`,this.x,this.y);
     this.y += 10;
     this.x = 25;
     this.docPDF.setFontType('bold')
     this.docPDF.text('Direccion:',this.x,this.y)
     this.x += 25;
-    this.docPDF.setFontType('normal'); 
+    this.docPDF.setFontType('normal');
     this.docPDF.text(`${this.cliente.direccion}`,this.x,this.y);
     this.x = 25;
     this.y += 10;
     this.docPDF.setFontType('bold')
     this.docPDF.text('Telefono:',this.x,this.y)
     this.x += 25;
-    this.docPDF.setFontType('normal'); 
+    this.docPDF.setFontType('normal');
     this.docPDF.text(`0987654321`,this.x,this.y);
     this.x = 25;
     this.y += 10;

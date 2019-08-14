@@ -14,7 +14,7 @@ export class MaterialesComponent implements OnInit {
   table_header:any
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
-
+  filtroMateriales = '';
   ngOnInit() {
     this.getDataMaterial()
     this.getDataProveedor()
@@ -58,7 +58,7 @@ export class MaterialesComponent implements OnInit {
     .subscribe(data => {
         this.respuestaMateriales = data.datos
     })
-  }  
+  }
 
   deleteDataTable = (value) => {
     let tabla = 'material'
@@ -84,7 +84,7 @@ export class MaterialesComponent implements OnInit {
     let tabla = 'material'
     let register = {tabla: tabla, datos: [{nombre: nombre, descripcion: descripcion, fecha_registro: this.fechaMaterial, fecha_actualizacion: this.fechaMaterial, precio: precio, idnicho: idnicho, idproveedor: idproveedor}]}
     this.http.post(environment.API_URL, register)
-    .subscribe( data => { 
+    .subscribe( data => {
       returning = data
     })
     window.location.reload()
@@ -98,7 +98,7 @@ export class MaterialesComponent implements OnInit {
     .subscribe(data => {
       this.respuestaProveedor = data.datos
     })
-  } 
+  }
 
   respuestaNicho: any[]
 
@@ -108,7 +108,7 @@ export class MaterialesComponent implements OnInit {
     .subscribe(data => {
       this.respuestaNicho = data.datos
     })
-  }  
+  }
   //MODAL NEW MATERIAL
 
 }
