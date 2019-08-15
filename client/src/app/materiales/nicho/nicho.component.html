@@ -35,7 +35,6 @@
                 <thead *ngFor="let item of table_header">
                     <th>{{item.id}}</th>
                     <th>{{item.nombre}}</th>
-                    <th>{{item.ubicacion}}</th>
                     <th></th>
                 </thead>
 
@@ -43,7 +42,6 @@
                     <tr *ngFor="let item of respuestaNicho">
                         <td>{{ item.id }}</td>
                         <td>{{ item.nombre }}</td>
-                        <td>{{item.idubicacion}}</td>
                         <td>
                             <a type="button" (click)="deleteDataTable(item.id)">
                                 <span></span>
@@ -75,22 +73,11 @@
                     <strong>Nombre del Nicho</strong><br>
                     <input formControlName="nombre">
                     <div>
-                        <span class="errors" *ngIf="nichoForm.controls['nombre'].errors?.required"> Obligatorio </span>
-                        <span class="errors" *ngIf="nichoForm.controls['nombre'].errors?.pattern"> Inválido </span>
+                        <span class="errors" *ngIf="getError('nombre')"> mayúscula al inicio y mínimo 5 letras </span>
                     </div><br><br>
-                    <strong>Ubicación</strong><br>
-                    <select formControlName="idubicacion">
-                        <option *ngFor="let item of respuestaUbicacion" value={{item.id}}>{{item.nombre}}</option>
-                    </select>
-                    <div>
-                        <span class="errors" *ngIf="nichoForm.controls['idubicacion'].errors?.required">Obligatorio</span>
-                    </div><br>
-                    <a type="button" (click)="postDataNicho()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span> Guardar
-                    </a>
+                    <button class="colorbutton white" [disabled]="!nichoForm.valid" (click)="postDataNicho()" type="submit">
+                        Enviar Datos
+                    </button>
                 </form>
             </div>
         </div>

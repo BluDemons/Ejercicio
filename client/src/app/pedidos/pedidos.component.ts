@@ -25,6 +25,7 @@ export class PedidosComponent implements OnInit {
     this.getDataPedidos()
     this.getDataProveedores()
     this.getDataMateriales()
+    // this.getDatabyIDMaterial(this.value)
 
     this.table_header = [
       {
@@ -43,6 +44,8 @@ export class PedidosComponent implements OnInit {
       idproveedor: ['',[Validators.required]],
       fecha: [''],
       total: ['',[Validators.required]],
+      idmaterial:['',[Validators.required]],
+      precio:['',[Validators.required]]
     });
   }
 
@@ -62,7 +65,7 @@ export class PedidosComponent implements OnInit {
 
   getDataPedidos = () => {
     let tabla = 'pedido'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
+    this.http.get<any>(environment.API_URL + `PedidoSelect?tabla=${tabla}`)
     .subscribe(data => {
         this.respuestaOrdenes = data.datos
     })
@@ -90,7 +93,6 @@ export class PedidosComponent implements OnInit {
 
   //MODAL NEW PEDIDO
   respuestaProveedores: any[]
-
   getDataProveedores = () => {
     let tabla = 'proveedor'
     this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
@@ -113,7 +115,7 @@ export class PedidosComponent implements OnInit {
     .subscribe( data => {
       // this.postData = data
     })
-    window.location.reload()
+    //window.location.reload()
   }
   //MODAL NEW PEDIDO
 
@@ -127,6 +129,25 @@ export class PedidosComponent implements OnInit {
         this.respuestaMateriales = data.datos
     })
   }
+  respuesta: any[]
+  getDatabyIDMaterial = (value) => {
+    // let value = 1
+    let tabla = 'material'
+    this.http.get<any>(environment.API_URL + `byid?tabla=${tabla}&id=${value}`)
+    .subscribe( data => { 
+      this.respuesta = data.datos
+      // localStorage.setItem("id", this.respuesta.toString() )
+    })
+  }
+  // getDatabyIDMaterial = () => {
+  //   let nombre = 'martillo'
+  //   let tabla = 'material'
+  //   this.http.get<any>(environment.API_URL + `byidMaterial?tabla=${tabla}&&nombre=${nombre}`)
+  //   .subscribe( data => { 
+  //     this.respuesta = data.datos
+  //     // localStorage.setItem("id", this.idPedidoVariable.toString() )
+  //   })
+  // }
   
   postDataDetallePedidos = () => {
     let nombre = this.detallepedidosForm.get('nombre').value

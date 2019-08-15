@@ -25,7 +25,9 @@ export class ClientesComponent implements OnInit {
         identificacion: 'Identificacíon',
         nombre: 'Nombre',
         apellido: 'Apellido',
-        direccion: 'Dirección'
+        direccion: 'Dirección',
+        telefono: 'Telefono',
+        correo_electronico:'Email'
       }
     ]
   }
@@ -33,10 +35,12 @@ export class ClientesComponent implements OnInit {
   formularioCliente(){
     this.clienteForm = this.formBuilder.group({
       id: [''],
-      identificacion: ['',[Validators.required]],
-      nombre: ['',[Validators.required]],
-      apellido: ['',[Validators.required]],
-      direccion: ['',[Validators.required]]
+      identificacion: ['',[Validators.required,Validators.pattern('([0|1|2]{1})([0-9]{9})')]],
+      nombre: ['',[Validators.required,Validators.pattern('[A-Za-zñÑ]{3,30}')]],
+      apellido: ['',[Validators.required,Validators.pattern('[A-Za-zñÑ]{3,30}')]],
+      direccion: ['',[Validators.required]],
+      telefono: ['',[Validators.required,Validators.pattern('([09|08|06]{2})([0-9]{8})')]],
+      correo_electronico: ['',[Validators.required,Validators.pattern('^[a-z]+[a-z0-9.-_ñÑ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]*$')]]
     });
   }
 
@@ -66,15 +70,25 @@ export class ClientesComponent implements OnInit {
     let nombre = this.clienteForm.get('nombre').value
     let apellido = this.clienteForm.get('apellido').value
     let direccion = this.clienteForm.get('direccion').value
+    let telefono = this.clienteForm.get('telefono').value
+    let correo_electronico = this.clienteForm.get('correo_electronico').value
 
     let tabla = 'cliente'
-    let register = {tabla: tabla, datos: [{identificacion: identificacion, nombre: nombre, direccion: direccion, apellido: apellido}]}
+    let register = {tabla: tabla, datos: [{identificacion: identificacion, nombre: nombre, direccion: direccion, apellido: apellido, telefono:telefono,correo_electronico:correo_electronico}]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => {
       // this.postData = data
     })
     window.location.reload()
   }
-  //MODAL NEW PROVCLIENTEEEDOR
+  //error
+  public getError(controlName: string): string {
+    let error = '';
+    const control = this.clienteForm.get(controlName);
+    if (control.touched && control.errors != null) {
+      error = JSON.stringify(control.errors);
+    }
+    return error;
+  }
 
 }

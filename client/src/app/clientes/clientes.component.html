@@ -21,6 +21,8 @@
                     <th>{{item.nombre}}</th>
                     <th>{{item.apellido}}</th>
                     <th>{{item.direccion}}</th>
+                    <th>{{item.telefono}}</th>
+                    <th>{{item.correo_electronico}}</th>
                     <th></th>
                 </thead>
 
@@ -31,6 +33,8 @@
                         <td>{{ item.nombre }}</td>
                         <td>{{ item.apellido }}</td>
                         <td>{{ item.direccion }}</td>
+                        <td>{{ item.telefono }}</td>
+                        <td>{{ item.correo_electronico }}</td>
                         <td>
                             <a type="button" (click)="deleteDataTable(item.id)">
                                 <span></span>
@@ -62,28 +66,42 @@
                     <strong>Identificación</strong><br>
                     <input formControlName="identificacion">
                     <div>
-                        <span class="errors" *ngIf="clienteForm.controls['identificacion'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="getError('identificacion')"> ingrese una Identificación valida </span>
                     </div><br>
 
                     <strong>Nombre</strong><br>
                     <input formControlName="nombre">
                     <div>
-                        <span class="errors" *ngIf="clienteForm.controls['nombre'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="getError('nombre')"> Debe iniciar con letra mayúscula y un mínimo de 4 letras </span>
                     </div><br>
 
                     <strong>Apellido</strong><br>
                     <input formControlName="apellido">
                     <div>
-                        <span class="errors" *ngIf="clienteForm.controls['apellido'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="getError('apellido')"> Debe iniciar con letra mayúscula y un mínimo de 4 letras </span>
                     </div><br>
 
                     <strong>Dirección</strong><br>
                     <input formControlName="direccion">
                     <div>
-                        <span class="errors" *ngIf="clienteForm.controls['direccion'].errors?.required"> Obligatorio </span>
+                        <span class="errors" *ngIf="getError('direccion')"> Debe iniciar con letra mayúscula </span>
                     </div><br>
 
-                    <a type="button" (click)="postDataCliente()">Guardar</a>
+                    <strong>Telefóno</strong><br>
+                    <input formControlName="telefono">
+                    <div>
+                        <span class="errors" *ngIf="getError('telefono')">Ingresar teléfono celular </span>
+                    </div><br>
+
+                    <strong>Email</strong><br>
+                    <input formControlName="correo_electronico">
+                    <div>
+                            <span class="errors" *ngIf="getError('correo_electronico')">Porfavor ingrese un correo válido</span>
+                    </div><br>
+
+                    <button class="colorbutton white" [disabled]="!clienteForm.valid" (click)="postDataCliente()" type="submit">
+                            Enviar Datos
+                    </button>
                 </form>
             </div>
         </div>

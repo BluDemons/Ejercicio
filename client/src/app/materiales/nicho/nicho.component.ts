@@ -13,19 +13,18 @@ export class NichoComponent implements OnInit {
   table_header: any
   nichoForm: FormGroup
   detallereclamosForm: FormGroup
+  nombre:string
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.getDataNicho()
-    this.getDataUbicacion()
     this.formularioNicho()
 
     this.table_header = [
       {
         id: 'N°',
         nombre: 'Nombre Nicho',
-        ubicacion: 'Ubicación'
       }
     ]
   }
@@ -33,8 +32,7 @@ export class NichoComponent implements OnInit {
   formularioNicho(){
     this.nichoForm = this.formBuilder.group({
       id: [''],
-      nombre: [''],
-      idubicacion:['',[Validators.required]]
+      nombre: ['',[Validators.required,Validators.pattern('[A-Z]{1}[a-z]{4,10}')]],
     });
   }
 
@@ -48,15 +46,6 @@ export class NichoComponent implements OnInit {
         this.respuestaNicho = data.datos
     })
   }
-  respuestaUbicacion: any[]
-
-  getDataUbicacion = () => {
-    let tabla = 'ubicacion'
-    this.http.get<any>(environment.API_URL + `?tabla=${tabla}`)
-    .subscribe(data => {
-      this.respuestaUbicacion = data.datos
-    })
-  } 
 
   deleteDataTable = (value) => {
     let tabla = 'nicho'
@@ -67,19 +56,35 @@ export class NichoComponent implements OnInit {
   //PAGINA PRINCIPAL
 
   //MODAL NEW RECLAMO
-  nuevafecha = new Date()
 
   postDataNicho = () => {
     let id
     let nombre = this.nichoForm.get('nombre').value
-    let idubicacion = this.nichoForm.get('idubicacion').value
 
     let tabla = 'nicho'
-    let register = {tabla: tabla, datos: [{ id: id, nombre: nombre, idubicacion: idubicacion}]}
+    let register = {tabla: tabla, datos: [{ id: id, nombre: nombre}]}
     this.http.post(environment.API_URL, register)
     .subscribe( data => {
       // this.postData = data
     })
     window.location.reload()
+  }
+
+  validaLoginForm(){
+    if(this.nichoForm.valid){
+      this.nombre = JSON.stringify(console.log(this.nichoForm.controls['name'].value))
+      alert(['Datos Enviados'])
+    }else{
+      this.nombre = JSON.stringify(console.log(this.nichoForm.controls['name'].errors))
+      }
+    }
+    
+  public getError(controlName: string): string {
+    let error = '';
+    const control = this.nichoForm.get(controlName);
+    if (control.touched && control.errors != null) {
+      error = JSON.stringify(control.errors);
+    }
+    return error;
   }
 }

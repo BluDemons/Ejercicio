@@ -2,10 +2,6 @@
 exports.up = function(knex, Promise) {
   //TABLAS DEBILES
   return knex.schema
-  .createTable( 'ubicacion', function( table ) {
-    table.increments('id');
-    table.string('nombre');
-  })
   .createTable( 'proveedor', function( table ) {
     table.increments('id');
     table.string('identificacion').notNullable().unique();
@@ -15,7 +11,7 @@ exports.up = function(knex, Promise) {
   })
   .createTable( 'reclamo', function( table ) {
     table.increments('id');
-    table.timestamp('fecha');
+    table.date('fecha').defaultTo(knex.fn.now());
     table.string('comentario');
   })
   .createTable( 'cliente', function( table ) {
@@ -24,27 +20,29 @@ exports.up = function(knex, Promise) {
     table.string('nombre');
     table.string('apellido');
     table.string('direccion');
+    table.string('telefono');
+    table.string('correo_electronico');
   })
 
   //TABLAS FUERTES
   .createTable( 'nicho', function( table ) {
     table.increments('id');
     table.string('nombre');
-    table.integer('idubicacion').references('id').inTable('ubicacion');
+    //table.integer('idubicacion').references('id').inTable('ubicacion');
   })
   .createTable( 'material', function( table ) {
     table.increments('id');
     table.string('nombre');
     table.string('descripcion');
-    table.timestamp('fecha_registro');
-    table.timestamp('fecha_actualizacion');
+    table.date('fecha_registro').defaultTo(knex.fn.now());
+    table.date('fecha_actualizacion').defaultTo(knex.fn.now());
     table.decimal('precio');
     table.integer('idnicho').references('id').inTable('nicho');
     table.integer('idproveedor').references('id').inTable('proveedor');
   })
   .createTable( 'pedido', function( table ) {
     table.increments('id');
-    table.timestamp('fecha');
+    table.date('fecha');
     table.decimal('total');
     table.integer('idproveedor').references('id').inTable('proveedor');
   })
@@ -96,7 +94,6 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema
-    .dropTableIfExists( 'ubicacion' )
     .dropTableIfExists( 'proveedor' )
     .dropTableIfExists( 'reclamo' )
     .dropTableIfExists( 'cliente' )

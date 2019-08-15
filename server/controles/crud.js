@@ -100,7 +100,6 @@ let getDatosbyID = (req, res) => {
         })
     })
 }
-
 //SELECT DE DETALLES SISTEMA
 let getDatosPedidos_detalles = (req, res) => {
     let idpedido = req.query.idpedido
@@ -173,6 +172,23 @@ let getDatosFactura_detalles = (req, res) => {
     })
 }
 
+let getPedidoSelect = (req, res) => {
+    db.raw(`select Pe.id,current_date Fecha,Pe.total,P.nombre from pedido Pe join proveedor P on pe.idproveedor=P.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+
 //SELECT DE DETALLES SISTEMA
 
 module.exports = {
@@ -184,5 +200,6 @@ module.exports = {
     getDatosPedidos_detalles,
     getDatosReclamo_detalles,
     getDatosFactura_detalles,
-    getDatosAlbaran_detalles
+    getDatosAlbaran_detalles,
+    getPedidoSelect,
 }

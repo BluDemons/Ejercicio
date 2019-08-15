@@ -13,5 +13,7 @@ api.get('/routeAlbaran', control.getDatosAlbaran_detalles)
 api.get('/routeOnlyID', control.getDatosPedidos_detalles)
 api.get('/routeReclamosAPI', control.getDatosReclamo_detalles)
 api.get('/routeFacturasAPI', control.getDatosFactura_detalles)
+api.get('/routePedidoSelect', control.getPedidoSelect)
+
 
 module.exports = api
