@@ -12,7 +12,7 @@ import 'jspdf-autotable';
 })
 export class PdfComponent implements OnInit {
 
-  idFactura = localStorage.getItem("id")
+  idFactura = sessionStorage.getItem("idFactura")
   docPDF: jsPDF;
   altoTotal: number;
   anchoTotal: number;
@@ -129,6 +129,7 @@ export class PdfComponent implements OnInit {
   }
 
   factura = () => {
+    this.
     this.docPDF = new jsPDF({
       orientation: 'p',
       unit: 'mm',

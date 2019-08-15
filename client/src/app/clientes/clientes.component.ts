@@ -79,7 +79,7 @@ export class ClientesComponent implements OnInit {
     .subscribe( data => {
       // this.postData = data
     })
-    window.location.reload()
+    // window.location.reload()
   }
   //error
   public getError(controlName: string): string {

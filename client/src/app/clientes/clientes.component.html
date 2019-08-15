@@ -1,14 +1,17 @@
-<div class="newCliente">
-    <a type="button" onclick="document.getElementById('id04').style.display='block'">
-        <img src="../../assets/nuevo.png" alt="new-img" height="64" width="64">
-    </a>
+<div class="container">
+    <input type="checkbox" id="toggle">
+    <label for="toggle" class="button">
+       </label>
+    <nav class="nav">
+        <a onclick="document.getElementById('id04').style.display='block'">Nueva Cliente</a>
+        <a>..</a>
+        <a routerLink="/dashboard">Home</a>
+        <!-- <a>..</a>
+            <a href="#">Nuevo pedido</a>
+            <a>..</a>
+            <a href="#">Reclamos</a> -->
+    </nav>
 </div>
-<div class="backHome">
-    <a type="button" routerLink="/dashboard">
-        <img src="../../assets/home.png" alt="home-img" height="64" width="64">
-    </a>
-</div>
-
 <!-- TABLA CLIENTE -->
 <section>
     <div class="table-wrapper">
@@ -96,7 +99,7 @@
                     <strong>Email</strong><br>
                     <input formControlName="correo_electronico">
                     <div>
-                            <span class="errors" *ngIf="getError('correo_electronico')">Porfavor ingrese un correo válido</span>
+                        <span class="errors" *ngIf="getError('correo_electronico')">Porfavor ingrese un correo válido</span>
                     </div><br>
 
                     <button class="colorbutton white" [disabled]="!clienteForm.valid" (click)="postDataCliente()" type="submit">
