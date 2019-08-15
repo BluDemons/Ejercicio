@@ -1,21 +1,3 @@
-<div class="newReclamo">
-    <a type="button" onclick="document.getElementById('id04').style.display='block'">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <img src="../../assets/nuevo.png" alt="new-img" height="64" width="64">
-    </a>
-</div>
-<div class="backHome">
-    <a type="button" routerLink="/dashboard">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <img src="../../assets/home.png" alt="home-img" height="64" width="64">
-    </a>
-</div>
 <div class="levelDown">
     <a type="button" routerLink="/pedidos">
         <span></span>
@@ -24,6 +6,20 @@
         <span></span>
         <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
     </a>
+</div>
+<div class="container">
+    <input type="checkbox" id="toggle">
+    <label for="toggle" class="button">
+       </label>
+    <nav class="nav">
+        <a onclick="document.getElementById('id04').style.display='block'">Nueva Reclamo</a>
+        <a>..</a>
+        <a routerLink="/dashboard">Home</a>
+        <!-- <a>..</a>
+            <a href="#">Nuevo pedido</a>
+            <a>..</a>
+            <a href="#">Reclamos</a> -->
+    </nav>
 </div>
 
 <!-- TABLA RECLAMOS -->
@@ -73,6 +69,11 @@
         </div>
     </div>
 </section>
+<div class="made-with-love">
+    RECLAMOS
+    <i>♥</i>
+    <a target="_blank" href="#">By: Richard</a>
+</div>
 <!-- TABLA RECLAMOS -->
 
 <!-- MODAL RECLAMOS -->

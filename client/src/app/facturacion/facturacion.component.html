@@ -1,14 +1,17 @@
-<div class="newFacturacion">
-    <a type="button" onclick="document.getElementById('id04').style.display='block'">
-        <img src="../../assets/nuevo.png" alt="new-img" height="64" width="64">
-    </a>
+<div class="container">
+    <input type="checkbox" id="toggle">
+    <label for="toggle" class="button">
+   </label>
+    <nav class="nav">
+        <a onclick="document.getElementById('id04').style.display='block'">Nueva Factura</a>
+        <a>..</a>
+        <a routerLink="/dashboard">Home</a>
+        <!-- <a>..</a>
+        <a href="#">Nuevo pedido</a>
+        <a>..</a>
+        <a href="#">Reclamos</a> -->
+    </nav>
 </div>
-<div class="backHome">
-    <a type="button" routerLink="/dashboard">
-        <img src="../../assets/home.png" alt="home-img" height="64" width="64">
-    </a>
-</div>
-
 <!-- TABLA FACTURACIÓN -->
 <section>
     <div class="table-wrapper">
