@@ -1,29 +1,12 @@
-<div class="newPedido">
-    <a type="button" onclick="document.getElementById('id04').style.display='block'">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <img src="../../assets/nuevo.png" alt="new-img" height="64" width="64">
-    </a>
-</div>
-<div class="backHome">
-    <a type="button" routerLink="/dashboard">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <img src="../../assets/home.png" alt="home-img" height="64" width="64">
-    </a>
-</div>
-<div class="reclamosPage">
-    <a type="button" routerLink="/reclamos">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <img src="../../assets/new.png" alt="reclamos-img" height="64" width="64">
-    </a>
+<div class="container">
+    <input type="checkbox" id="toggle">
+    <label for="toggle" class="button">
+           </label>
+    <nav class="nav">
+        <a onclick="document.getElementById('id04').style.display='block'">Nueva Pedido</a>
+        <a routerLink="/dashboard">Home</a>
+        <a routerLink="/reclamos">Reclamos</a>
+    </nav>
 </div>
 
 <!-- TABLA PEDIDOS -->
@@ -69,6 +52,11 @@
         </div>
     </div>
 </section>
+<div class="made-with-love">
+    PEDIDOS
+    <i>♥</i>
+    <a target="_blank" href="#">By: Richard</a>
+</div>
 <!-- TABLA PEDIDOS -->
 
 <!-- MODAL PEDIDOS -->
