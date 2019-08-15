@@ -1,42 +1,112 @@
+
+    <div class="container">
+            <input type="checkbox" id="toggle">
+            <label for="toggle" class="button">
+                   </label>
+            <nav class="nav">
+                <a onclick="document.getElementById('id04').style.display='block'">Detalle de Pedido</a>
+                <a routerLink="/dashboard">Home</a>
+            </nav>
+        </div>
 <section>
     <div class="table-wrapper">
         <h1>RESUMEN</h1>
         <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" border="0">
-                <thead *ngFor="let item of table_header">
-                    <th>{{item.idpedido}}</th>
-                    <th>{{item.idmaterial}}</th>
-                    <th>{{item.nombre}}</th>
-                    <th>{{item.cantidad}}</th>
-                    <th>{{item.precio}}</th>
-                    <th></th>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let item of respuestaDetallePedido">
-                        <td>{{item.idpedido}}</td>
-                        <td>{{item.idmaterial}}</td>
-                        <td>{{item.nombre}}</td>
-                        <td>{{item.cantidad}}</td>
-                        <td>{{item.precio}}</td>
-                        <td>
-                            <a type="button" (click)="deleteDataTable(item.id)" routerLink="/pedidos">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
+                    <thead *ngFor="let item of table_header">
+                            <th>{{item.cantidad}}</th>
+                            <th>{{item.idmaterial}}</th>
+                            <th>{{item.valor_unitario}}</th>
+                            <th>{{item.valor_total}}</th>
+                            <!-- <th></th> -->
+                            <th></th>
+                        </thead>
+                
+                        <tbody>
+                            <tr *ngFor="let item of respuestaDetallePedido">
+                                <td>{{item.cantidad}}</td>
+                                <td>{{item.idmaterial}}</td>
+                                <td>{{item.valor_unitario}}</td>
+                                <td>{{item.valor_total}}</td>
+                                <!-- <td>
+                                    <a type="button" (click)="getDatabyID(item.id)">
+                                        <img src="../../assets/edit-img.png" alt="edit-img" height="18" width="18">
+                                    </a>
+                                </td> -->
+                                <td>
+                                    <a type="button"  (click)="deleteDataTable(item.id)" routerLink="/pedidos">
+                                        <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
             </table>
         </div>
     </div>
 </section>
 <!-- poner imagen del pgf -->
-<div class="levelDown">
-    <a type="button" routerLink="/pedidos">
-        <img src="../../assets/back-img.png" alt="home-img" height="64" width="64">
-    </a>
-</div>
+<!-- MODAL DETALLE_PEDIDOS -->
+<div>
+        <div id="id04" class="w3-modal">
+            <div class="w3-modal-content">
+                <header>
+                    <span onclick="document.getElementById('id04').style.display='none'" class="w3-display-topright">
+                        <img src="../../../assets/close-img.png" alt="edit-img" height="18" width="18">
+                    </span>
+                    <!-- <h2>Registro Cliente</h2> -->
+                </header>
+    
+                <div>
+                    <h1>Detalle del Pedido</h1>
+                    <form [formGroup]="detallepedidosForm" autocomplete="off">
+                        <strong>Material *</strong><br>
+                        <select formControlName="idmaterial">
+                            <option *ngFor="let item of respuestaMateriales" value={{item.id}}>{{item.nombre}}</option>
+                        </select>
+                        <br>
+    
+                        <strong>Cantidad *</strong><br>
+                        <input formControlName="cantidad">
+                        <br>
+    
+                        <button class="colorbutton white" [disabled]="!detallepedidosForm.valid" (click)="postDataDetallePedidos()" type="submit">
+                                Enviar Datos
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="pdfButton">
+        <a type="button" class="pdf" (click)="pdf()">
+            <img src="../../assets/png-img.png" alt="pdf-img" height="64" width="64">
+        </a>
+    </div> -->
+    <!-- MODAL DETALLE_PEDIDOS -->
+        
+    <!-- SUBTOTAL - TOTAL - IVA -->
+    <div class="second_table">
+        <table class="fl-table">
+            <thead>
+                <tr *ngFor="let item of respuestaSubtotal">
+                    <th>Subtotal</th>
+                    <td>{{ item.subtotal }}</td>
+                </tr>
+                <tr *ngFor="let item of respuestaIva">
+                    <th>I.V.A. 12%</th>
+                    <td>{{ item.iva }}</td>
+                </tr>
+                <tr *ngFor="let item of respuestaTotal">
+                    <th>Total</th>
+                    <td>{{ item.total }}</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <!-- SUBTOTAL - TOTAL - IVA -->
+    
+    <div class="levelDown">
+        <a type="button" routerLink="/pedidos">
+            <img src="../../../assets/back-img.png" alt="home-img" height="64" width="64">
+        </a>
+    </div>
