@@ -188,6 +188,41 @@ let getPedidoSelect = (req, res) => {
         })
     })
 }
+let getPedidosPP = (req, res) => {
+    db.raw(`select pedido.id, proveedor.nombre as idproveedor, pedido.fecha as fecha from pedido join proveedor on pedido.idproveedor = proveedor.id`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
+let getPedidosSel = (req, res) => {
+    let idpedido = req.query.idpedido
+    let consulta = req.query.consulta
+
+    db.raw(`select detalle_pedido.idpedido, ${consulta} from detalle_pedido join material on detalle_pedido.idmaterial = material.id where idpedido = ${idpedido} group by detalle_pedido.idpedido`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
 
 //SELECT DE DETALLES SISTEMA
 
@@ -201,5 +236,8 @@ module.exports = {
     getDatosReclamo_detalles,
     getDatosFactura_detalles,
     getDatosAlbaran_detalles,
-    getPedidoSelect,
+    getPedidoSelect,    
+    getPedidosPP,
+    getPedidosSel,
+
 }

@@ -42,15 +42,12 @@ exports.up = function(knex, Promise) {
   })
   .createTable( 'pedido', function( table ) {
     table.increments('id');
-    table.date('fecha');
-    table.decimal('total');
+    table.date('fecha').defaultTo(knex.fn.now());
     table.integer('idproveedor').references('id').inTable('proveedor');
   })
   .createTable( 'detalle_pedido', function( table ) {
     table.increments('id');
-    table.string('nombre');
     table.integer('cantidad');
-    table.decimal('precio');
     table.integer('idpedido').references('id').inTable('pedido');
     table.integer('idmaterial').references('id').inTable('material');
   })
