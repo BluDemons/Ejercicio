@@ -14,7 +14,7 @@ api.get('/routeOnlyID', control.getDatosPedidos_detalles)
 api.get('/routeReclamosAPI', control.getDatosReclamo_detalles)
 api.get('/routeFacturasAPI', control.getDatosFactura_detalles)
 api.get('/routePedidoSelect', control.getPedidoSelect)
-api.get('/routePedidosAPI', control.getDatosPedidos_detalles)         //V.UNIT AND V.TOTAL RESUMEN PEDIDOS
+api.get('/routePedidosAPI', control.getDatosPedidos_detalle)         //V.UNIT AND V.TOTAL RESUMEN PEDIDOS
 api.get('/routePedidosSel', control.getPedidosSel)   
 api.get('/routePedidos', control.getPedidosPP)
 

@@ -129,7 +129,7 @@ export class PdfComponent implements OnInit {
   }
 
   factura = () => {
-    this.
+    this.traerDatos()
     this.docPDF = new jsPDF({
       orientation: 'p',
       unit: 'mm',

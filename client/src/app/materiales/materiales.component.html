@@ -43,14 +43,14 @@
 
                 <tbody>
                     <tr *ngFor="let item of respuestaMateriales | filtros:filtroMateriales| paginate: { itemsPerPage: 5, currentPage: p } ">
-                        <th>{{item.id}}</th>
-                        <th>{{item.nombre}}</th>
-                        <th>{{item.descripcion}}</th>
-                        <th>{{item.fecha_registro}}</th>
-                        <th>{{item.fecha_actualizacion}}</th>
-                        <th>{{item.precio}}</th>
-                        <th>{{item.idnicho}}</th>
-                        <th>{{item.idproveedor}}</th>
+                        <td>{{item.id}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.fecha_registro}}</td>
+                        <td>{{item.fecha_actualizacion}}</td>
+                        <td>{{item.precio}}</td>
+                        <td>{{item.idnicho}}</td>
+                        <td>{{item.idproveedor}}</td>
                         <td>
                             <a type="button" (click)="deleteDataTable(item.id)">
                                 <img src="../../../assets/delete-img.png" alt="delete-img" height="18" width="18">

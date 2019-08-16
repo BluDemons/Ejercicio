@@ -112,13 +112,6 @@ deleteDataTable = (value) => {
   }
 //PAGINA PRINCIPAL
 
-
-
-
-
-
-
-
 //MODAL NEW FACTURA
 nuevafecha = new Date()
 fecha_orden = this.nuevafecha.getDate() + "/" + (this.nuevafecha.getMonth() +1) + "/" + this.nuevafecha.getFullYear()

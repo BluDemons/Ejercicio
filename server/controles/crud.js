@@ -223,6 +223,24 @@ let getPedidosSel = (req, res) => {
         })
     })
 }
+let getDatosPedidos_detalle = (req, res) => {
+    let idpedido = req.query.idpedido
+
+    db.raw(`select detalle_pedido.idpedido, detalle_pedido.cantidad, material.nombre as idmaterial, material.precio as valor_unitario, (material.precio*detalle_pedido.cantidad) as valor_total from detalle_pedido join material on detalle_pedido.idmaterial = material.id where  detalle_pedido.idpedido = ${idpedido}`)
+    .then( resultado => {
+        return res.status(200).json({
+            ok: true,
+            datos: resultado.rows
+        }) 
+    })
+    .catch((error) => {
+        return res.status(500).json({
+            ok: false,
+            datos: null,
+            mensaje: `Error del servidor: ${error}` 
+        })
+    })
+}
 
 //SELECT DE DETALLES SISTEMA
 
@@ -232,6 +250,7 @@ module.exports = {
     updateDatos,
     deleteDatos,
     getDatosbyID,
+    getDatosPedidos_detalle,
     getDatosPedidos_detalles,
     getDatosReclamo_detalles,
     getDatosFactura_detalles,

@@ -76,7 +76,7 @@ textarea {
     bottom: 5%;
 }
 
-.pdfButton {
+.pdfButton{
     position: fixed;
     left: 5%;
     bottom: 5%;
@@ -213,7 +213,7 @@ section {
     display: none;
 }
 
-.button {
+.button{
     z-index: 999;
     width: 43px;
     height: 43px;
@@ -272,7 +272,7 @@ section {
     transform: translateY(10%);
 }
 
-#toggle:checked~.button {
+#toggle:checked~.button{
     transform: rotate(135deg);
     box-shadow: 0 0 0 0 transparent;
 }   
